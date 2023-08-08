@@ -13,7 +13,7 @@ const buttons = [
 
 export default function ButtonList() {
   return (
-    <div className="flex gap-3 p-3">
+    <div className="flex gap-3 p-3 overflow-x-auto no-scrollbar relative">
       {buttons.map((ok,i) => (
         <Button key={i} name={ok} />
       ))}

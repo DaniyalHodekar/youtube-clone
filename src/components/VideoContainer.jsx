@@ -18,7 +18,7 @@ function VideoContainer() {
   const vids = videos.map(video => <VideoCard info={video}/>)
 
   return (
-    <div className="p-3 grid grid-cols-container gap-5 ">
+    <div className="p-3 grid grid-cols-container gap-6">
       {videos.length == 0 ? <h2>Loading</h2> : vids}
     </div>
   );

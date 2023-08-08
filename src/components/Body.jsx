@@ -1,15 +1,14 @@
 import MainContainer from "./MainContainer";
 import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import Overlay from "./Overlay";
 
 export default function Body() {
   const isMenuOpen = useSelector(store => store.app.isMenuOpen);
-  const gridStyle = isMenuOpen
-    ? "grid grid-cols-[250px_1fr] overflow-y-auto"
-    : "grid overflow-y-auto";
   return (
-    <div className={gridStyle}>
+    <div className="overflow-y-auto px-4">
       {isMenuOpen && <Sidebar />}
+      {isMenuOpen && <Overlay />}
       <MainContainer />
     </div>
   );

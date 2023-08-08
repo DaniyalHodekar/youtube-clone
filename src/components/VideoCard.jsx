@@ -1,5 +1,5 @@
 function VideoCard({ info }) {
-  console.log(info);
+  
   const { snippet, statistics } = info;
   let { channelTitle, title } = snippet;
   const thumbnail = snippet.thumbnails.medium.url;
@@ -10,21 +10,25 @@ function VideoCard({ info }) {
     views = views.toFixed(1);
     char = "M";
   }
-  if (title.length > 70) {
-    title = title.slice(0, 70).concat(`...`);
+  if (title.length > 100) {
+    title = title.slice(0, 100).concat(`...`);
   }
   return (
     <div className="relative">
-      <img src={thumbnail} alt="thumbnail" className="rounded-md w-full" />
-      <h2 className="mt-2 font-medium">{title}</h2>
+      <img src={thumbnail} alt="thumbnail" className="rounded-lg w-full" />
+      <h2 className="mt-3 mb-1 font-medium ">{title}</h2>
       <p className="text-[#aaa] text-sm">{channelTitle} &#x2713;</p>
 
-      <span className="text-[#aaa] text-sm">
+      <span className="text-[#aaa] text-sm relative bottom-[3px]">
         {views}
         {char} views
       </span>
     </div>
   );
+}
+
+VideoCard.propTypes = {
+  info: Object
 }
 
 export default VideoCard;
