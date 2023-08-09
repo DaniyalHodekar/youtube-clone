@@ -15,7 +15,7 @@ function VideoContainer() {
     setVideos(json.items);
   }
 
-  const vids = videos.map(video => <VideoCard info={video}/>)
+  const vids = videos.map(video => <VideoCard key={video.id} info={video}/>)
 
   return (
     <div className="p-3 grid grid-cols-container gap-6">

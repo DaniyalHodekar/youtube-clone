@@ -27,8 +27,5 @@ function VideoCard({ info }) {
   );
 }
 
-VideoCard.propTypes = {
-  info: Object
-}
 
 export default VideoCard;
