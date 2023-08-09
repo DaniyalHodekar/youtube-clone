@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {YOUTUBE_API} from "/utils/constants.js"
 import VideoCard from "./VideoCard";
+import { Link } from "react-router-dom";
 
 function VideoContainer() {
   const [videos,setVideos] = useState([]);
@@ -15,7 +16,11 @@ function VideoContainer() {
     setVideos(json.items);
   }
 
-  const vids = videos.map(video => <VideoCard key={video.id} info={video}/>)
+  const vids = videos.map((video) => (
+    <Link key={video.id} to={"/watch?v=" + video.id}>
+      <VideoCard info={video} />
+    </Link>
+  ));
 
   return (
     <div className="p-3 grid grid-cols-container gap-6">
