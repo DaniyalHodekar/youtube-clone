@@ -10,7 +10,7 @@ export default function Sidebar() {
     dispatch(toggleMenu())
   }
   return (
-    <aside className="p-2 absolute top-0 bottom-0 left-0 z-20 bg-[#111] bg-opacity-80 w-[300px] backdrop-blur-sm">
+    <aside className="p-2 absolute top-0 bottom-0 left-0 z-30 bg-[#111] bg-opacity-80 w-[300px] backdrop-blur-sm">
       <div className="flex gap-3 items-center ml-1">
         <button
           className="p-3 rounded-full hover:bg-[#333]"

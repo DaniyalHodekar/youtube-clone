@@ -9,7 +9,7 @@ function Overlay() {
   return (
     <div 
     onClick={()=>toggleMenuHandler()}
-     className=" absolute inset-0 bg-[#111] bg-opacity-60 z-10"></div>
+     className=" absolute inset-0 bg-[#111] bg-opacity-60 z-20"></div>
   )
 }
 

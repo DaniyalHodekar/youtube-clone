@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 //if you use useparams it takes only after the / but we are using query strings over here so use useSearchParams
 import { VIDEO_INFO_API1,VIDEO_INFO_API2 } from "../../utils/constants";
 import { useEffect,useState } from "react";
+
 function WatchPage() {
 
   const [info,setInfo] = useState([]);
@@ -36,9 +37,7 @@ function WatchPage() {
   );
 }
 
-
-export default WatchPage
-
+export default WatchPage;
 
 function VideoInfoCard({info}){
   

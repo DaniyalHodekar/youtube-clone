@@ -4,16 +4,43 @@ import searchIcon from "/search.svg";
 import userIcon from "/icons8-male-user-32.png";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../../utils/appSlice";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { SEARCH_SUGGEST_API } from "../../utils/constants";
+import SuggestionBox from "./SuggestionBox";
+import SearchOverlay from "./SearchOverlay";
+
+let id;
 
 export default function Head() {
-const dispatch = useDispatch();
-  function toggleMenuHandler(){
+  const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    clearTimeout(id);
+    id = setTimeout(() => {
+      getSearchResults(searchQuery);
+    }, 700);
+    // getSearchResults(searchQuery);
+  }, [searchQuery]);
+
+  async function getSearchResults(query) {
+    if (query.trim() == "") {
+      setSuggestions([]);
+      return;
+    }
+    let data = await fetch(SEARCH_SUGGEST_API + query);
+    const json = await data.json();
+    setSuggestions(json[1]);
+    // console.log(`helo world`);
+  }
+
+  const dispatch = useDispatch();
+  function toggleMenuHandler() {
     dispatch(toggleMenu());
   }
 
   return (
-    <header className="p-2 grid grid-cols-[1fr_2fr_1fr] items-center gap-1">
+    <header className="p-2 grid grid-cols-[1fr_2fr_1fr] items-center gap-1 ">
       <div className="flex gap-3 items-center">
         <button
           className="p-3 rounded-full hover:bg-[#333] ml-1"
@@ -32,6 +59,10 @@ const dispatch = useDispatch();
           type="text"
           className="bg-transparent border border-[#444] p-2 px-4 rounded-full rounded-r-none w-4/5 focus:border-sky-600 outline-none max-w-xl"
           placeholder="Search"
+          value={searchQuery}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+          }}
         />
         <button className="border rounded-full border-[#444] rounded-l-none border-l-0 px-4 bg-[#252525]">
           <img src={searchIcon} alt="search" className="invert w-6" />
@@ -40,6 +71,10 @@ const dispatch = useDispatch();
       <div>
         <img className="invert ml-auto mr-4" src={userIcon} alt="" />
       </div>
+      {suggestions.length > 0 && <SuggestionBox suggestions={suggestions} />}
+      {suggestions.length > 0 && (
+        <SearchOverlay setSuggestions={setSuggestions} />
+      )}
     </header>
   );
 }
