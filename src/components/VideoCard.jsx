@@ -15,7 +15,7 @@ function VideoCard({ info }) {
   }
   return (
     <div className="relative">
-      <img src={thumbnail} alt="thumbnail" className="rounded-lg w-full" />
+      <img src={thumbnail} alt="thumbnail" className="rounded-lg w-full bg-[#222] aspect-video" />
       <h2 className="mt-3 mb-1 font-medium ">{title}</h2>
       <p className="text-[#aaa] text-sm">{channelTitle} &#x2713;</p>
 

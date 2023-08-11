@@ -8,19 +8,22 @@ import { useEffect, useState } from "react";
 import { SEARCH_SUGGEST_API } from "../../utils/constants";
 import SuggestionBox from "./SuggestionBox";
 import SearchOverlay from "./SearchOverlay";
+import { Link } from "react-router-dom";
 
-let id;
 
 export default function Head() {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
-    clearTimeout(id);
-    id = setTimeout(() => {
+    let id = setTimeout(() => {
       getSearchResults(searchQuery);
-    }, 700);
-    // getSearchResults(searchQuery);
+    }, 500);
+
+    return function () {
+      clearTimeout(id);
+    }
+
   }, [searchQuery]);
 
   async function getSearchResults(query) {
@@ -52,7 +55,9 @@ export default function Head() {
             alt="hamburger"
           />
         </button>
-        <img className="invert w-9" src={ytLogo} alt="logo" />
+        
+          <img className="invert w-9" src={ytLogo} alt="logo" />
+        
       </div>
       <div className="flex justify-center ml-2">
         <input
