@@ -1,16 +1,19 @@
 import hamburger from "/icons8-menu.svg";
 import ytLogo from "/youtube3.svg";
 import { toggleMenu } from "../../utils/appSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 
 export default function Sidebar() {
   const dispatch = useDispatch();
-
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+  let position = isMenuOpen ? "left-0" : "-left-80"
   function toggleMenuHandler(){
     dispatch(toggleMenu())
   }
   return (
-    <aside className="p-2 absolute top-0 bottom-0 left-0 z-30 bg-[#111] bg-opacity-80 w-[300px] backdrop-blur-sm">
+    <aside
+      className={`p-2 absolute top-0 bottom-0 ${position} z-30 bg-[#111] bg-opacity-80 w-[250px] backdrop-blur-sm transition-all ease-in-out duration-300`}
+    >
       <div className="flex gap-3 items-center ml-1">
         <button
           className="p-3 rounded-full hover:bg-[#333]"
@@ -22,7 +25,9 @@ export default function Sidebar() {
             alt="hamburger"
           />
         </button>
-        <img className="invert w-9" src={ytLogo} alt="logo" />
+        <a href="/">
+          <img className="invert w-9" src={ytLogo} alt="logo" />
+        </a>
       </div>
       <p className="p-2 border-b border-[#555] font-medium">Explore</p>
       <ul className="p-2 border-b border-[#555]">

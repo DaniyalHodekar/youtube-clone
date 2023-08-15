@@ -8,23 +8,30 @@ import { useEffect, useState } from "react";
 import { SEARCH_SUGGEST_API } from "../../utils/constants";
 import SuggestionBox from "./SuggestionBox";
 import SearchOverlay from "./SearchOverlay";
-import { Link } from "react-router-dom";
-
+import { setQuery, cacheResults } from "../../utils/searchSlice";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 export default function Head() {
-  const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  let cache = useSelector((store) => store.search.cache);
+  let query = useSelector((store) => store.search.query);
+  const dispatch = useDispatch();
+  //lets cache our search suggestions so api wont get called again for same input
 
   useEffect(() => {
-    let id = setTimeout(() => {
-      getSearchResults(searchQuery);
-    }, 500);
+    let id;
+    if (cache[query]) {
+        setSuggestions(cache[query]);
+      } else {
+        id = setTimeout(() => {
+          getSearchResults(query);
+        }, 300);
+      }
 
     return function () {
       clearTimeout(id);
-    }
-
-  }, [searchQuery]);
+    };
+  }, [query]);
 
   async function getSearchResults(query) {
     if (query.trim() == "") {
@@ -34,10 +41,10 @@ export default function Head() {
     let data = await fetch(SEARCH_SUGGEST_API + query);
     const json = await data.json();
     setSuggestions(json[1]);
-    // console.log(`helo world`);
+    dispatch(cacheResults(json[1]));
   }
 
-  const dispatch = useDispatch();
+
   function toggleMenuHandler() {
     dispatch(toggleMenu());
   }
@@ -55,18 +62,18 @@ export default function Head() {
             alt="hamburger"
           />
         </button>
-        
+        <a href="/">
           <img className="invert w-9" src={ytLogo} alt="logo" />
-        
+        </a>
       </div>
       <div className="flex justify-center ml-2">
         <input
           type="text"
           className="bg-transparent border border-[#444] p-2 px-4 rounded-full rounded-r-none w-4/5 focus:border-sky-600 outline-none max-w-xl"
           placeholder="Search"
-          value={searchQuery}
+          value={query}
           onChange={(e) => {
-            setSearchQuery(e.target.value);
+            dispatch(setQuery(e.target.value));
           }}
         />
         <button className="border rounded-full border-[#444] rounded-l-none border-l-0 px-4 bg-[#252525]">

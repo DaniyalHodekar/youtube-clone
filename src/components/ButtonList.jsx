@@ -8,7 +8,8 @@ const buttons = [
   "F1",
   "Algorithms",
   "Songs",
-  "Soccer"
+  "Soccer",
+  "JavaScript",
 ];
 
 export default function ButtonList() {

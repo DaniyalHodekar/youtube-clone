@@ -5,11 +5,13 @@ import store from "../utils/store";
 import WatchPage from "./components/WatchPage";
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
+import ErrorElement from "./components/errorElement";
 
 const router = createBrowserRouter([
   {
     path:"/",
     element:<Body/>,
+    errorElement:<ErrorElement/>,
     children:[
       {
         path:"/",
