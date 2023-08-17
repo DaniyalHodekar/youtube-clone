@@ -4,7 +4,7 @@ import { formatDistanceToNow } from "date-fns";
 import { VideoCardShimmer } from "./WatchPage";
 function Comments({ videoId }) {
   const [comments, setComments] = useState([]);
-  const [disabled , setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   useEffect(() => {
     getComments(videoId);
   }, []);
@@ -13,12 +13,11 @@ function Comments({ videoId }) {
     const url = COMMENTS_API + `&videoId=${Id}` + RELATED_VIDEOS_API_2;
 
     const res = await fetch(url);
-    if(!res.ok) {
-        setDisabled(true);
-        return;
+    if (!res.ok) {
+      setDisabled(true);
+      return;
     }
     const json = await res.json();
-    console.log(json)
     setComments(json?.items);
   }
 
@@ -51,7 +50,10 @@ function Comments({ videoId }) {
             <span className="text-[#aaa]"> {timeAgo}</span>
           </p>
           <pre className="font-Roboto whitespace-normal">{textOriginal}</pre>
-          <p>{likeCount >= 1000 ? Math.floor(likeCount/100) + "K" : likeCount } likes</p>
+          <p>
+            {likeCount >= 1000 ? Math.floor(likeCount / 100) + "K" : likeCount}{" "}
+            likes
+          </p>
         </div>
       </div>
     );
@@ -68,7 +70,9 @@ function Comments({ videoId }) {
       ) : (
         <>
           {disabled ? (
-            <p className="px-2">Comments for this video have been disabled by the uploader</p>
+            <p className="px-2">
+              Comments for this video have been disabled by the uploader
+            </p>
           ) : (
             <div className="flex flex-col gap-4 p-4">
               {Array(15)

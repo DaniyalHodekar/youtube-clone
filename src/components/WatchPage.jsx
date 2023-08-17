@@ -1,4 +1,4 @@
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 //if you use useparams it takes only after the / but we are using query strings over here so use useSearchParams
 import {
   VIDEO_INFO_API1,
@@ -33,10 +33,12 @@ function WatchPage() {
   //this returns us a urlSearchParams object which has a map of keys and its values of query strings, we can now get a value of a key.
 
   async function getRelatedVideos(categoryId) {
-    let data = await fetch(
+    let res = await fetch(
       RELATED_VIDEOS_API + categoryId + RELATED_VIDEOS_API_2
     );
-    let json = await data.json();
+    if(!res.ok) return;
+    let json = await res.json();
+    
     setRelatedVideos(json.items);
   }
 
@@ -46,7 +48,7 @@ function WatchPage() {
 
   return (
     <div className="grid lg:grid-cols-[3fr_1fr] lg:ml-9 gap-6">
-      <div className="mt-3 md:p-2">
+      <div className="mt-2 md:p-2">
         <iframe
           ref={targetRef}
           className="w-full aspect-video max-w-screen-xl"

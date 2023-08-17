@@ -11,7 +11,7 @@ const searchSlice = createSlice({
             state.cache = {...state.cache, [state.query] : action.payload};
         },
         setQuery: function(state,action){
-            state.query = action.payload
+            state.query = action.payload;
         },
     }
 

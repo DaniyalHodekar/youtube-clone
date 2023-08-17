@@ -40,7 +40,7 @@ function VideoContainer() {
 
   return (
     <>
-      <div className="p-3 grid grid-cols-container gap-6">
+      <div className="p-3 grid grid-cols-container gap-4">
         {videos.length <= 0 ? <Shimmers /> : vids}
       </div>
       {loading ? (
