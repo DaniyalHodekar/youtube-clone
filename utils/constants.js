@@ -10,7 +10,7 @@ export const SEARCH_SUGGEST_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const RELATED_VIDEOS_API =
-  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=10&videoCategoryId=";
+  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=15&videoCategoryId=";
 
 export const RELATED_VIDEOS_API_2 =
   "&key=AIzaSyC5htb0LtlNokBQEdAIQ95nell3pm0LcQk";

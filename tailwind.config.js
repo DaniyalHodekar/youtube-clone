@@ -5,7 +5,7 @@ export default {
     extend: {
       fontFamily: {
         Roboto: ["Roboto", "sans-serif"],
-        Noto: ['Noto Sans', "sans-serif"]
+        Noto: ["Noto Sans", "sans-serif"],
       },
       gridTemplateColumns: {
         container: "repeat( auto-fit, minmax(300px, 1fr) )",

@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 //if you use useparams it takes only after the / but we are using query strings over here so use useSearchParams
 import {
   VIDEO_INFO_API1,
@@ -7,7 +7,7 @@ import {
   RELATED_VIDEOS_API_2,
 } from "../../utils/constants";
 import { useEffect, useState, useRef } from "react";
-import VideoCard from "./VideoCard";
+import RelatedVideoCard from "./RelatedVideoCard";
 import { Shimmers } from "./VideoContainer";
 import Comments from "./Comments";
 import VideoInfoCard from "./VideoInfoCard";
@@ -18,6 +18,7 @@ function WatchPage() {
   const [relatedVideos, setRelatedVideos] = useState([]);
   const targetRef = useRef(null);
   const id = params.get("v");
+
   useEffect(() => {
     getVideoInfo(id);
     targetRef?.current?.scrollIntoView({ behavior: "smooth" });
@@ -36,18 +37,20 @@ function WatchPage() {
     let res = await fetch(
       RELATED_VIDEOS_API + categoryId + RELATED_VIDEOS_API_2
     );
-    if(!res.ok) return;
+    if (!res.ok) return;
     let json = await res.json();
-    
+
     setRelatedVideos(json.items);
   }
 
   const vids = relatedVideos?.map((video) => (
-    <VideoCard key={video.id} info={video} />
+    <Link key={video.id} to={"/watch?v=" + video.id}>
+      <RelatedVideoCard info={video} />
+    </Link>
   ));
 
   return (
-    <div className="grid lg:grid-cols-[3fr_1fr] lg:ml-9 gap-6">
+    <div className="grid lg:grid-cols-[3fr_1.2fr] gap-2 xl:px-8">
       <div className="mt-2 md:p-2">
         <iframe
           ref={targetRef}
@@ -62,10 +65,10 @@ function WatchPage() {
         ) : (
           <VideoInfoCard info={info} />
         )}
-        {<Comments videoId={id}/>}
+        {<Comments key={id} videoId={id} />}
       </div>
-      <div className="flex flex-col p-2 gap-4">
-        <p className="ml-2">Up Next</p>
+      <div className="flex flex-col p-1 gap-6 sm:gap-3 max-w-full overflow-hidden">
+        <p className="ml-1 text-sm">Up Next</p>
         {relatedVideos?.length == 0 ? <Shimmers /> : vids}
       </div>
     </div>
@@ -77,7 +80,7 @@ export default WatchPage;
 export function VideoCardShimmer() {
   return (
     <>
-      <p className="h-5 rounded-lg max-w-xl bg-[#222]"></p>
+      <p className="h-4 rounded-lg max-w-xl bg-[#222]"></p>
       <p className="h-4 rounded-lg max-w-sm bg-[#222] my-3"></p>
     </>
   );

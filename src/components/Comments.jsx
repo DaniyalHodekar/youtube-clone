@@ -61,8 +61,7 @@ function Comments({ videoId }) {
 
   return (
     <div>
-      {!disabled && <span className="mr-6 ml-2">Comments</span>}
-      {!disabled && <button>Sort By:</button>}
+      {!disabled && <span className="mr-6 ml-2">Comments:</span>}
       {!disabled && comments?.length > 0 ? (
         <div className="flex flex-col gap-8 rounded-lg p-3 text-sm">
           {thread}
@@ -75,7 +74,7 @@ function Comments({ videoId }) {
             </p>
           ) : (
             <div className="flex flex-col gap-4 p-4">
-              {Array(15)
+              {Array(3)
                 .fill(null)
                 .map((_, i) => (
                   <VideoCardShimmer key={i} />

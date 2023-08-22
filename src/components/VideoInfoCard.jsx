@@ -17,7 +17,13 @@ export default function VideoInfoCard({ info }) {
         {info[0].title}
       </p>
       <p className="text-sm">{info[0]?.channelTitle}</p>
-      <section className="relative bg-[#252525] rounded-xl p-3 mt-3">
+      <section
+        className={
+          "relative bg-[#252525] rounded-xl p-3 mt-3 transition-colors" +
+          (isInfoVisible ? "" : " hover:bg-[#333] cursor-pointer")
+        }
+        onClick={() => setVisible(true)}
+      >
         <p className="text-sm font-medium mb-2 flex gap-1 whitespace-nowrap items-center">
           <span>
             {views}
@@ -42,7 +48,10 @@ export default function VideoInfoCard({ info }) {
           </pre>
         )}
         <button
-          onClick={() => setVisible(!isInfoVisible)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setVisible(!isInfoVisible);
+          }}
           className="text-sm text-white"
         >
           ...{isInfoVisible ? "less" : "more"}
