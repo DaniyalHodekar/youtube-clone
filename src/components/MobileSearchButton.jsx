@@ -1,9 +1,12 @@
 import searchIcon from "/search.svg";
-function MobileSearchButton({ setMobileSearchVisible }) {
+import { useDispatch } from "react-redux";
+import { setMobileSearch } from "../../utils/appSlice";
+function MobileSearchButton() {
+  const dispatch = useDispatch();
   return (
     <button onClick={()=> {
-      setMobileSearchVisible(true);
-    }} className="relative right-10">
+      dispatch(setMobileSearch(true));
+    }} className="ml-4">
       <img className="invert w-6" src={searchIcon} alt="logo" />
     </button>
   );

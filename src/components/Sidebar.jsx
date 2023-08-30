@@ -1,8 +1,9 @@
 import hamburger from "/icons8-menu.svg";
-import ytText from "/youtubeText.svg";
 import { toggleMenu } from "../../utils/appSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
+
 export default function Sidebar() {
   const dispatch = useDispatch();
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
@@ -25,11 +26,11 @@ export default function Sidebar() {
             alt="hamburger"
           />
         </button>
-        <Link to="/" onClick={(e) =>{
+        <Link to="/" className="w-[90px]" onClick={(e) =>{
           e.stopPropagation();
           toggleMenuHandler();
         } }>
-          <img className="invert w-[90px]" src={ytText} alt="logo" />
+          <Logo/>
         </Link>
       </div>
       <div className="flex flex-col grow overflow-y-scroll">

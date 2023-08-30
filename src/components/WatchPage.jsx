@@ -16,6 +16,7 @@ function WatchPage() {
   const [info, setInfo] = useState([]);
   const [params] = useSearchParams();
   const [relatedVideos, setRelatedVideos] = useState([]);
+  const [error, setError] = useState(false);
   const targetRef = useRef(null);
   const id = params.get("v");
 
@@ -37,7 +38,10 @@ function WatchPage() {
     let res = await fetch(
       RELATED_VIDEOS_API + categoryId + RELATED_VIDEOS_API_2
     );
-    if (!res.ok) return;
+    if (!res.ok) {
+      setError(true);
+      return;
+    }
     let json = await res.json();
 
     setRelatedVideos(json.items);
@@ -69,7 +73,12 @@ function WatchPage() {
       </div>
       <div className="flex flex-col p-1 gap-6 sm:gap-3 max-w-full overflow-hidden">
         <p className="ml-1 text-sm">Up Next</p>
-        {relatedVideos?.length == 0 ? <Shimmers /> : vids}
+
+        {!error ? (
+          <>{relatedVideos?.length == 0 ? <Shimmers /> : vids}</>
+        ) : (
+          <p>Error getting videos :{"("}</p>
+        )}
       </div>
     </div>
   );

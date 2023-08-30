@@ -1,6 +1,4 @@
 import hamburger from "/icons8-menu.svg";
-import ytLogo from "/youtubeLogo.svg";
-import searchIcon from "/search.svg";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../../utils/appSlice";
 import { useEffect, useState } from "react";
@@ -11,19 +9,28 @@ import { setQuery, cacheResults } from "../../utils/searchSlice";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import MobileSearchButton from "./MobileSearchButton";
 import { Link } from "react-router-dom";
+import SearchForm from "./SearchForm";
+import Logo from "./Logo";
+import { setMobileSearch } from "../../utils/appSlice";
 
 export default function Head() {
   const [suggestions, setSuggestions] = useState([]);
   let cache = useSelector((store) => store.search.cache);
   let query = useSelector((store) => store.search.query);
+  let loggedin = useSelector((store) => store.login.isLoggedIn);
+
   const dispatch = useDispatch();
   let [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  let [mobileSearchVisible, setMobileSearchVisible] = useState(false);
+  const mobileSearchVisible = useSelector(
+    (store) => store.app.isMobileSearchOpen
+  );
   //lets cache our search suggestions so api wont get called again for same input
 
   useEffect(() => {
     let id;
-    if (cache[query]) {
+    if (query.trim() === "") {
+      setSuggestions([]);
+    } else if (cache[query]) {
       setSuggestions(cache[query]);
     } else {
       id = setTimeout(() => {
@@ -69,27 +76,14 @@ export default function Head() {
         <header className="fixed top-0 left-0 right-0 bg-[#111] flex p-2 px-5 gap-2 z-10">
           <button
             onClick={() => {
-              setMobileSearchVisible(false);
+              dispatch(setMobileSearch(false));
               dispatch(setQuery(""));
               setSuggestions([]);
             }}
           >
             Back
           </button>
-          <div className="flex justify-center ml-2 grow">
-            <input
-              type="text"
-              className="bg-transparent border border-[#353535] p-[0.35rem] px-4 rounded-full rounded-r-none w-4/5 focus:border-sky-600 outline-none max-w-xl"
-              placeholder="Search"
-              value={query}
-              onChange={(e) => {
-                dispatch(setQuery(e.target.value));
-              }}
-            />
-            <button className="border rounded-full border-[#353535] rounded-l-none border-l-0 px-5 bg-[#252525]">
-              <img src={searchIcon} alt="search" className="invert w-6" />
-            </button>
-          </div>
+          <SearchForm />
         </header>
       ) : (
         <header className="fixed top-0 left-0 right-0 p-[0.35rem] flex justify-between sm:grid sm:grid-cols-[1fr_2fr_1fr] items-center gap-1 z-10 bg-[#111]">
@@ -104,32 +98,15 @@ export default function Head() {
                 alt="hamburger"
               />
             </button>
-            <Link to="/">
-              <img className="w-[90px]" src={ytLogo} alt="logo" />
+            <Link className="w-[90px]" to="/">
+              <Logo />
             </Link>
           </div>
-          {windowWidth < 600 ? (
-            <MobileSearchButton
-              setMobileSearchVisible={setMobileSearchVisible}
-            />
-          ) : (
-            <div className="flex justify-center ml-2">
-              <input
-                type="text"
-                className="bg-transparent border border-[#353535] p-[0.35rem] px-4 rounded-full rounded-r-none w-4/5 focus:border-sky-600 outline-none max-w-xl"
-                placeholder="Search"
-                value={query}
-                onChange={(e) => {
-                  dispatch(setQuery(e.target.value));
-                }}
-              />
-              <button className="border rounded-full border-[#353535] rounded-l-none border-l-0 px-5 bg-[#252525]">
-                <img src={searchIcon} alt="search" className="invert w-6" />
-              </button>
-            </div>
-          )}
-
-          <button className="ml-auto mr-2 rounded-full border-[#444] border p-1 px-2 hover:bg-sky-950 flex items-center gap-2">
+          {windowWidth < 600 ? <MobileSearchButton /> : <SearchForm />}
+          <Link
+            to={loggedin ? "/profile" : "/login"}
+            className="ml-auto mr-2 rounded-full border-[#444] border p-1 px-2 hover:bg-sky-950 flex items-center gap-2"
+          >
             <svg
               height="24"
               viewBox="0 0 24 24"
@@ -144,7 +121,7 @@ export default function Head() {
             <p className="text-sky-500 text-sm whitespace-nowrap mr-1">
               Sign in
             </p>
-          </button>
+          </Link>
         </header>
       )}
       {suggestions.length > 0 && <SuggestionBox suggestions={suggestions} />}

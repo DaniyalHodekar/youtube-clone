@@ -16,6 +16,7 @@ function RelatedVideoCard({ info }) {
             src={thumbnail}
             alt="thumbnail"
             className="rounded sm:w-44 w-full bg-[#222] aspect-video"
+            loading="lazy"
           />
       <div>
         <h2 className="mb-1 mt-3 sm:mt-0 font-medium lg:whitespace-nowrap lg:max-w-xs overflow-hidden text-ellipsis">
