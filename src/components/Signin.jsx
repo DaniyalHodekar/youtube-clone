@@ -32,6 +32,7 @@ function Signin() {
           <input
             className="bg-transparent border border-[#555] p-[0.25rem] px-2 rounded-md w-full focus:border-sky-600 outline-none"
             type="text"
+            autoComplete="off"
             ref={inputRef}
             id="username"
           />

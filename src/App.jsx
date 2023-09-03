@@ -6,6 +6,7 @@ import {createBrowserRouter,RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import Signin from "./components/Signin";
 import Profile from "./components/Profile";
+const CategoryVideos = React.lazy(() => import("./components/CategoryVideos"));
 const SearchPage = React.lazy(() => import("./components/SearchPage"));
 const WatchPage = React.lazy(() => import("./components/WatchPage"));
 const ErrorElement = React.lazy(() => import("./components/ErrorElement"));
@@ -57,6 +58,14 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: "/category/",
+        element: (
+          <Suspense fallback={<p>Loading..</p>}>
+            <CategoryVideos />
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);
@@ -64,7 +73,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <Provider store={store}>
-      <div className="bg-[#111] text-white font-Roboto h-screen flex flex-col">
+      <div className="bg-[#0a0a0a] text-white font-Roboto h-screen flex flex-col">
         <RouterProvider router={router}>
           <Body />
         </RouterProvider>

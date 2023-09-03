@@ -73,7 +73,7 @@ export default function Head() {
   return (
     <>
       {mobileSearchVisible ? (
-        <header className="fixed top-0 left-0 right-0 bg-[#111] flex p-2 px-5 gap-2 z-10">
+        <header className="fixed top-0 left-0 right-0 bg-[#0a0a0a] flex p-2 px-5 gap-2 z-10">
           <button
             onClick={() => {
               dispatch(setMobileSearch(false));
@@ -86,7 +86,7 @@ export default function Head() {
           <SearchForm />
         </header>
       ) : (
-        <header className="fixed top-0 left-0 right-0 p-[0.35rem] flex justify-between sm:grid sm:grid-cols-[1fr_2fr_1fr] items-center gap-1 z-10 bg-[#111]">
+        <header className="fixed top-0 left-0 right-0 p-[0.35rem] flex justify-between sm:grid sm:grid-cols-[1fr_2fr_1fr] items-center gap-1 z-10 bg-[#0a0a0a]">
           <div className="flex gap-3 items-center">
             <button
               className="p-3 rounded-full hover:bg-[#333] ml-1"

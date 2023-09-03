@@ -11,7 +11,7 @@ function VideoCard({ info }) {
     addSuffix: true,
   });
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden mb-6">
       <img
         src={thumbnail}
         alt="thumbnail"

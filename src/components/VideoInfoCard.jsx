@@ -13,9 +13,9 @@ export default function VideoInfoCard({ info }) {
 
   return (
     <div className="p-2 py-3">
-      <p className="font-semibold font-Noto text-lg mb-2 tracking-tight">
+      <h2 className="font-semibold font-Noto text-lg mb-2 tracking-tight leading-snug">
         {info[0].title}
-      </p>
+      </h2>
       <p className="text-sm">{info[0]?.channelTitle}</p>
       <section
         className={

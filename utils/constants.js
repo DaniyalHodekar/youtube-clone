@@ -20,5 +20,7 @@ export const COMMENTS_API =
 export const LOCAL_STORAGE_KEY = 'YOUTUBE_CLONE_69420'
 
 
-export const YOUTUBE_SEARCH_API = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&q=`
+export const YOUTUBE_SEARCH_API = `https://corsproxy.io/?https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&q=`;
 
+export const CATEGORY_API =
+  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=15&chart=mostPopular&videoCategoryId=";
