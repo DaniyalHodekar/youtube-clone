@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import store from "../utils/store";
 import {createBrowserRouter,RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
-import Signin from "./components/Signin";
 import Profile from "./components/Profile";
 const CategoryVideos = React.lazy(() => import("./components/CategoryVideos"));
 const SearchPage = React.lazy(() => import("./components/SearchPage"));
@@ -41,10 +40,6 @@ const router = createBrowserRouter([
             <SearchPage />
           </Suspense>
         ),
-      },
-      {
-        path: "/login",
-        element: <Signin />,
       },
       {
         path: "/profile",

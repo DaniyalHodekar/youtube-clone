@@ -11,7 +11,7 @@ export default function Body() {
       <Head />
       <Sidebar />
       {isMenuOpen && <Overlay />}
-      <Outlet/>
+      <Outlet />
     </div>
   );
 }

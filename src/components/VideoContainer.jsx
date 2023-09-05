@@ -7,7 +7,6 @@ function VideoContainer() {
   const [videos, setVideos] = useState([]);
   const [nextPage, setNextPage] = useState("");
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     getVideos();
   }, []);
@@ -66,7 +65,7 @@ export function Shimmers() {
     <>
       {Array(15)
         .fill(null)
-        .map((_,i) => (
+        .map((_, i) => (
           <Shimmer key={i} />
         ))}
     </>

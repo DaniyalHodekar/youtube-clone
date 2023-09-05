@@ -4,6 +4,7 @@ const loginSlice = createSlice({
   name: "login",
   initialState: {
     isLoggedIn: false,
+    name:"",
     likedVideos: [],
     subscriptions: [],
   },
@@ -23,8 +24,11 @@ const loginSlice = createSlice({
         state.subscriptions = [...state.subscriptions.slice(1, 19)];
       }
     },
+    setName:function (state, action) {
+      state.name = action.payload;
+    }
   },
 });
 
 export default loginSlice.reducer;
-export const { setLogin, addVideo, addSubscription } = loginSlice.actions;
+export const { setLogin, addVideo, addSubscription,setName } = loginSlice.actions;

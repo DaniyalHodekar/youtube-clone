@@ -58,7 +58,7 @@ function WatchPage() {
       <div className="mt-2 md:p-2">
         <iframe
           ref={targetRef}
-          className="w-full aspect-video max-w-screen-xl"
+          className="w-full aspect-video rounded-md sm:rounded-lg max-w-screen-xl"
           src={"https://www.youtube.com/embed/" + id + "?autoplay=true"}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
