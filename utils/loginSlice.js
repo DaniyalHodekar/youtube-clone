@@ -4,7 +4,7 @@ const loginSlice = createSlice({
   name: "login",
   initialState: {
     isLoggedIn: false,
-    name:"",
+    name: "",
     likedVideos: [],
     subscriptions: [],
   },
@@ -13,22 +13,19 @@ const loginSlice = createSlice({
       state.isLoggedIn = true;
     },
     addVideo: function (state, action) {
+      if (state.likedVideos.includes(action.payload)) return;
       state.likedVideos.push(action.payload);
-      if (state.likedVideos.length > 20) {
-        state.likedVideos = [...state.likedVideos.slice(1, 19)];
-      }
     },
     addSubscription: function (state, action) {
+      if (state.subscriptions.includes(action.payload)) return;
       state.subscriptions.push(action.payload);
-      if (state.subscriptions.length > 20) {
-        state.subscriptions = [...state.subscriptions.slice(1, 19)];
-      }
     },
-    setName:function (state, action) {
+    setName: function (state, action) {
       state.name = action.payload;
-    }
+    },
   },
 });
 
 export default loginSlice.reducer;
-export const { setLogin, addVideo, addSubscription,setName } = loginSlice.actions;
+export const { setLogin, addVideo, addSubscription, setName } =
+  loginSlice.actions;

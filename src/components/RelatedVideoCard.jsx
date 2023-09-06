@@ -1,5 +1,6 @@
 import formatCount from "../../utils/formatCount";
 import { formatDistanceToNow } from "date-fns";
+
 function RelatedVideoCard({ info }) {
   // console.log(info);
   const { snippet, statistics } = info;
@@ -12,12 +13,12 @@ function RelatedVideoCard({ info }) {
   });
   return (
     <div className="relative sm:flex gap-3 text-sm">
-          <img
-            src={thumbnail}
-            alt="thumbnail"
-            className="rounded sm:w-44 w-full bg-[#222] aspect-video"
-            loading="lazy"
-          />
+      <img
+        src={thumbnail}
+        alt="thumbnail"
+        className="rounded sm:w-44 w-full bg-[#222] aspect-video"
+        loading="lazy"
+      />
       <div>
         <h2 className="mb-1 mt-3 sm:mt-0 font-medium lg:whitespace-nowrap lg:max-w-xs overflow-hidden text-ellipsis">
           {title}

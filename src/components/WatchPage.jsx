@@ -54,12 +54,12 @@ function WatchPage() {
   ));
 
   return (
-    <div className="grid lg:grid-cols-[3fr_1.2fr] gap-2 xl:px-8">
+    <div className="grid lg:grid-cols-[3fr_1.2fr] gap-4 xl:px-8">
       <div className="mt-2 md:p-2">
         <iframe
+          src={"https://www.youtube.com/embed/" + id + "?autoplay=true"}
           ref={targetRef}
           className="w-full aspect-video rounded-md sm:rounded-lg max-w-screen-xl"
-          src={"https://www.youtube.com/embed/" + id + "?autoplay=true"}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
@@ -67,7 +67,7 @@ function WatchPage() {
         {info.length == 0 ? (
           <VideoCardShimmer />
         ) : (
-          <VideoInfoCard info={info} />
+          <VideoInfoCard info={info} videoId={id} />
         )}
         {<Comments key={id} videoId={id} />}
       </div>

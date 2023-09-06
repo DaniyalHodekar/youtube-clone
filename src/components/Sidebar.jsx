@@ -203,8 +203,8 @@ export default function Sidebar() {
         <footer className="p-2 text-xs">
           <p className="whitespace-normal font-Roboto text-[#999] select-none">
             This project has been developed solely for educational purposes and
-            utilizes YouTube&apos;s data API to present video content. It is imperative
-            to acknowledge that{" "}
+            utilizes YouTube&apos;s data API to present video content. It is
+            imperative to acknowledge that{" "}
             <span className="font-medium text-white">
               all videos and their associated content featured within this
               project exclusively belong to their respective creators and

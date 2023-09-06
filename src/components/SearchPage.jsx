@@ -5,8 +5,11 @@ function SearchPage() {
   let ok = params.get("query");
   return (
     <div>
-      <p className="my-4">Showing search results for {ok}</p>
-      <SearchContainer params={ok}/>
+      <p className="my-4">
+        Showing search results for{" "}
+        <span className="font-medium">&apos;{ok}&apos;</span>
+      </p>
+      <SearchContainer params={ok} />
     </div>
   );
 }

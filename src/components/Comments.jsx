@@ -5,9 +5,7 @@ import { VideoCardShimmer } from "./WatchPage";
 function Comments({ videoId }) {
   const [comments, setComments] = useState([]);
   const [disabled, setDisabled] = useState(false);
-  useEffect(() => {
-    getComments(videoId);
-  }, []);
+  const [nextPage, setNextPage] = useState("");
 
   async function getComments(Id) {
     const url = COMMENTS_API + `&videoId=${Id}` + RELATED_VIDEOS_API_2;
@@ -18,53 +16,101 @@ function Comments({ videoId }) {
       return;
     }
     const json = await res.json();
+    // console.log(json?.items);
     setComments(json?.items);
+    setNextPage(json?.nextPageToken);
   }
 
-  const thread = comments?.map((comment) => {
-    let {
-      authorDisplayName,
-      authorProfileImageUrl,
-      publishedAt,
-      likeCount,
-      textOriginal,
-    } = comment.snippet.topLevelComment.snippet;
+  async function getMoreComments(Id) {
+    if (!nextPage) return;
+    const url =
+      COMMENTS_API +
+      `&videoId=${Id}&pageToken=${nextPage}` +
+      RELATED_VIDEOS_API_2;
+    const res = await fetch(url);
+    const json = await res.json();
+    setComments([...comments, ...(json?.items ?? [])]);
+    console.log(comments);
+    if (json?.nextPageToken) {
+      setNextPage(json?.nextPageToken);
+    } else {
+      setNextPage("");
+    }
+  }
 
-    const time = new Date(publishedAt);
-    const timeAgo = formatDistanceToNow(time, {
-      addSuffix: true,
+  useEffect(() => {
+    getComments(videoId);
+  }, []);
+
+  const thread =
+    comments.length > 0 &&
+    comments?.map((comment) => {
+      let {
+        authorDisplayName,
+        authorProfileImageUrl,
+        publishedAt,
+        likeCount,
+        textOriginal,
+      } = comment.snippet.topLevelComment.snippet;
+
+      const time = new Date(publishedAt);
+      const timeAgo = formatDistanceToNow(time, {
+        addSuffix: true,
+      });
+
+      return (
+        <div key={comment.id} className="flex gap-4">
+          <div className="shrink-0">
+            <img
+              className="rounded-full w-10"
+              src={authorProfileImageUrl}
+              alt={authorDisplayName}
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <p>
+              <span className="font-medium">{authorDisplayName} &nbsp;</span>
+              <span className="text-[#aaa]"> {timeAgo}</span>
+            </p>
+            <pre className="font-Roboto whitespace-normal">{textOriginal}</pre>
+            <p>
+              {likeCount >= 1000
+                ? Math.floor(likeCount / 100) + "K"
+                : likeCount}{" "}
+              likes
+            </p>
+          </div>
+        </div>
+      );
     });
-
-    return (
-      <div key={comment.id} className="flex gap-4">
-        <div className="shrink-0">
-          <img
-            className="rounded-full w-10"
-            src={authorProfileImageUrl}
-            alt={authorDisplayName}
-          />
-        </div>
-        <div className="flex flex-col gap-1">
-          <p>
-            <span className="font-medium">{authorDisplayName} &nbsp;</span>
-            <span className="text-[#aaa]"> {timeAgo}</span>
-          </p>
-          <pre className="font-Roboto whitespace-normal">{textOriginal}</pre>
-          <p>
-            {likeCount >= 1000 ? Math.floor(likeCount / 100) + "K" : likeCount}{" "}
-            likes
-          </p>
-        </div>
-      </div>
-    );
-  });
 
   return (
     <div>
-      {!disabled && <span className="mr-6 ml-2">Comments:</span>}
+      {!disabled && (
+        <p className="mr-6 ml-2 my-2 font-medium text-lg">Comments:</p>
+      )}
       {!disabled && comments?.length > 0 ? (
         <div className="flex flex-col gap-8 rounded-lg p-3 text-sm">
           {thread}
+          <div>
+            <button
+              className="ml-1 rounded-full p-2 pl-2 pr-4 active:bg-sky-950 lg:hover:bg-sky-950 text-sky-500 flex items-center gap-1"
+              onClick={() => {
+                getMoreComments(videoId);
+              }}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                focusable="false"
+                className="pointer-events-none w-6"
+                fill="currentColor"
+              >
+                <path d="M7 10l5 5 5-5z"></path>
+              </svg>
+
+              <span>Load More</span>
+            </button>
+          </div>
         </div>
       ) : (
         <>

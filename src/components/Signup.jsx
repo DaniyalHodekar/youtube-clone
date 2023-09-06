@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
 import { Form } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setName,setLogin } from "../../utils/loginSlice";
+import { setName, setLogin } from "../../utils/loginSlice";
 
 function Signup() {
-  const [text,setText] = useState(false);
+  const [text, setText] = useState(false);
   const [nameError, setNameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const nameRef = useRef(null);
@@ -12,18 +12,16 @@ function Signup() {
   const dispatch = useDispatch();
 
   function handleGuest() {
-    nameRef.current.value = "anonymousUser69";
+    nameRef.current.value = "AnonymousUser69";
     passRef.current.value = "helloWorld420";
   }
 
   function handleSubmit(e) {
-
     const nameLength = nameRef.current.value.length;
     const passLength = passRef.current.value.length;
 
     const nameCheck = nameLength < 8 || nameLength > 15;
     const passwordCheck = passLength < 8 || passLength > 15;
-
 
     if (nameCheck) {
       setNameError(true);
@@ -43,11 +41,10 @@ function Signup() {
       dispatch(setName(nameRef.current.value));
       dispatch(setLogin());
     }
-    
   }
 
   return (
-    <div className="mx-auto mt-16 max-w-sm pr-2 overflow-hidden flex-col justify-center">
+    <div className="pl-3 pr-5 mx-auto mt-16 max-w-sm overflow-hidden flex-col justify-center">
       <Form action="/profile" onSubmit={handleSubmit}>
         <h2 className="font-bold tracking-wider text-2xl mb-4">Sign up</h2>
         <div>
@@ -84,22 +81,28 @@ function Signup() {
               Password must be between 8 to 15 characters
             </p>
           )}
-          <button className="text-sm" type="button" onClick={() => {
-            setText(!text)
-          }}>{text ? "Hide" : "Show"} password</button>
+          <button
+            className="text-sm"
+            type="button"
+            onClick={() => {
+              setText(!text);
+            }}
+          >
+            {text ? "Hide" : "Show"} password
+          </button>
         </div>
         <button
           type="submit"
-          className="text-sky-500 rounded-full border-[#444] border p-1 px-2 hover:bg-sky-950 mt-4 mr-4"
+          className="text-sky-500 rounded-full border-[#444] border p-1 px-4 hover:bg-sky-950 mt-4 mr-4"
         >
           Sign up
         </button>
         <button
           type="button"
-          className="text-sky-500 rounded-full border-[#444] border p-1 px-2 hover:bg-sky-950 mt-4"
+          className="text-sky-500 rounded-full border-[#444] border p-1 px-4 hover:bg-sky-950 mt-4"
           onClick={handleGuest}
         >
-          Login as a guest
+          Use guest credentials
         </button>
       </Form>
     </div>
