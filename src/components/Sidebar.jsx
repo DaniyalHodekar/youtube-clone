@@ -214,7 +214,15 @@ export default function Sidebar() {
             appropriation or copyright infringement.
           </p>
           <p className="text-zinc-500 mt-3 select-none">
-            Project by Daniyal Hodekar
+            Project by{" "}
+            <a
+              href="https://daniyalhodekar.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sky-500"
+            >
+              Daniyal Hodekar
+            </a>
           </p>
         </footer>
       </div>
