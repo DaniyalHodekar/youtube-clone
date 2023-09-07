@@ -1,10 +1,11 @@
-import React,{Suspense} from "react";
+import React, { Suspense } from "react";
 import Body from "./components/Body";
 import { Provider } from "react-redux";
 import store from "../utils/store";
-import {createBrowserRouter,RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import Profile from "./components/Profile";
+import Loader from "./components/Loader";
 const CategoryVideos = React.lazy(() => import("./components/CategoryVideos"));
 const SearchPage = React.lazy(() => import("./components/SearchPage"));
 const WatchPage = React.lazy(() => import("./components/WatchPage"));
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Body />,
     errorElement: (
-      <Suspense fallback={<p>An error occured</p>}>
+      <Suspense fallback={<Loader />}>
         <ErrorElement />
       </Suspense>
     ),
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
       {
         path: "/watch",
         element: (
-          <Suspense fallback={<p>Loading..</p>}>
+          <Suspense fallback={<Loader />}>
             <WatchPage />
           </Suspense>
         ),
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: (
-          <Suspense fallback={<p>Loading..</p>}>
+          <Suspense fallback={<Loader />}>
             <SearchPage />
           </Suspense>
         ),
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: (
-          <Suspense fallback={<p>Loading..</p>}>
+          <Suspense fallback={<Loader />}>
             <Signup />
           </Suspense>
         ),
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: "/category/",
         element: (
-          <Suspense fallback={<p>Loading..</p>}>
+          <Suspense fallback={<Loader />}>
             <CategoryVideos />
           </Suspense>
         ),

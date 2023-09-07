@@ -1,5 +1,4 @@
 import Button from "./Button";
-
 const buttons = [
   "Front-end",
   "Gaming",
