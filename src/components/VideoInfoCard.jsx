@@ -21,7 +21,7 @@ export default function VideoInfoCard({ info, videoId }) {
 
   return (
     <div className="p-2 py-3">
-      <h2 className="font-semibold font-Noto text-lg mb-3 tracking-tight leading-snug">
+      <h2 className="font-semibold font-Noto sm:text-lg mb-3 tracking-tighter leading-snug">
         {info[0].title}
       </h2>
       <div className="flex items-center flex-wrap">
@@ -48,8 +48,8 @@ export default function VideoInfoCard({ info, videoId }) {
             <button
               className={
                 !subscribed
-                  ? "bg-[#252525] hover:bg-[#333] rounded-full p-1 px-3.5 text-sm"
-                  : "rounded-full p-1 px-3.5 text-sm bg-zinc-200 hover:bg-zinc-300 text-zinc-800"
+                  ? "bg-[#252525] hover:bg-[#333] rounded-full p-1 px-3.5 text-xs sm:text-sm"
+                  : "rounded-full p-1 px-3.5 text-xs sm:text-sm bg-zinc-200 hover:bg-zinc-300 text-zinc-800"
               }
               onClick={() => {
                 dispatch(addSubscription(info[0].channelTitle));
@@ -63,8 +63,8 @@ export default function VideoInfoCard({ info, videoId }) {
           <button
             className={
               !liked
-                ? "bg-[#252525] hover:bg-[#333] rounded-full p-1 px-3.5 text-sm"
-                : "rounded-full p-1 px-3.5 text-sm bg-sky-950 hover:bg-sky-900 text-sky-500"
+                ? "bg-[#252525] hover:bg-[#333] rounded-full p-1 px-3.5 text-xs sm:text-sm"
+                : "rounded-full p-1 px-3.5 text-xs sm:text-sm bg-sky-950 hover:bg-sky-900 text-sky-500"
             }
             onClick={() => {
               dispatch(addVideo(videoId));
@@ -74,12 +74,10 @@ export default function VideoInfoCard({ info, videoId }) {
           </button>
         </div>
       </div>
-      {/* <div className=" flex items-center justify-between mb-4"></div> */}
-
       <section
         className={
-          "relative bg-[#252525] rounded-xl p-3 transition-colors" +
-          (isInfoVisible ? "" : " hover:bg-[#333] cursor-pointer")
+          "relative bg-[#252525] rounded-xl p-3 pb-2 transition-colors" +
+          (isInfoVisible ? "" : " lg:hover:bg-[#333] cursor-pointer")
         }
         onClick={() => setVisible(true)}
       >
@@ -97,12 +95,12 @@ export default function VideoInfoCard({ info, videoId }) {
           )}
         </p>
         {!isInfoVisible && (
-          <pre className="text-sm font-Roboto whitespace-pre-line mb-1">
+          <pre className="text-xs sm:text-sm font-Roboto whitespace-pre-line mb-1">
             {info[0]?.description.slice(0, 80) + "..."}
           </pre>
         )}
         {isInfoVisible && (
-          <pre className="text-sm font-Roboto whitespace-pre-line mb-1">
+          <pre className="text-xs sm:text-sm font-Roboto whitespace-pre-line mb-1">
             {info[0]?.description}
           </pre>
         )}

@@ -10,6 +10,7 @@ export default function SearchForm() {
   return (
     <Form
       action="/search"
+      className="grow"
       onSubmit={(e) => {
         if (query.trim() === "") {
           e.preventDefault();
@@ -30,11 +31,13 @@ export default function SearchForm() {
             dispatch(setQuery(e.target.value));
           }}
         />
-        <button type="submit" className="border rounded-full border-[#353535] rounded-l-none border-l-0 px-5 bg-[#252525]">
+        <button
+          type="submit"
+          className="border rounded-full border-[#353535] rounded-l-none border-l-0 px-5 bg-[#252525]"
+        >
           <img src={searchIcon} alt="search" className="invert w-6" />
         </button>
       </div>
     </Form>
   );
 }
-

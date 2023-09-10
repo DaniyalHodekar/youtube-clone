@@ -78,7 +78,7 @@ function ProfilePage() {
           })}
         </ul>
       ) : (
-        <p>No Subscriptions</p>
+        <p className="mt-4">No Subscriptions</p>
       )}
     </div>
   );

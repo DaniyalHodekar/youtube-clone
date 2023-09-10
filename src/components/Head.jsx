@@ -73,7 +73,7 @@ export default function Head() {
   return (
     <>
       {mobileSearchVisible ? (
-        <header className="fixed top-0 left-0 right-0 bg-[#0a0a0a] flex p-2 px-5 gap-2 z-10">
+        <header className="sticky top-0 bg-[#0a0a0a] flex p-2 px-5 gap-2 z-10">
           <button
             onClick={() => {
               dispatch(setMobileSearch(false));
@@ -86,10 +86,10 @@ export default function Head() {
           <SearchForm />
         </header>
       ) : (
-        <header className="fixed top-0 left-0 right-0 p-[0.35rem] flex justify-between sm:grid sm:grid-cols-[1fr_2fr_1fr] items-center gap-1 z-10 bg-[#0a0a0a]">
+        <header className="sticky top-0 py-[0.35rem] flex justify-between sm:grid sm:grid-cols-[1fr_2fr_1fr] items-center gap-1 z-10 bg-[#0a0a0a] lg:-mx-2">
           <div className="flex gap-3 items-center">
             <button
-              className="p-3 rounded-full hover:bg-[#333] ml-1"
+              className="p-3 rounded-full hover:bg-[#333]"
               onClick={() => toggleMenuHandler()}
             >
               <img
@@ -102,7 +102,7 @@ export default function Head() {
               <Logo />
             </Link>
           </div>
-          {windowWidth < 600 ? <MobileSearchButton /> : <SearchForm />}
+          {windowWidth < 640 ? <MobileSearchButton /> : <SearchForm />}
           <Link
             to={loggedin ? "/profile" : "/signup"}
             className="ml-auto mr-2 rounded-full border-[#444] border p-1 px-2 hover:bg-sky-950 flex items-center gap-2"

@@ -46,7 +46,9 @@ function VideoContainer() {
         getMoreVideos();
       }
     });
+
     observer.observe(node);
+
     return function () {
       observer.unobserve(node);
     };

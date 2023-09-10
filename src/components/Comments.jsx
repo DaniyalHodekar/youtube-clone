@@ -69,7 +69,9 @@ function Comments({ videoId }) {
           </div>
           <div className="flex flex-col gap-1">
             <p>
-              <span className="font-medium">{authorDisplayName} &nbsp;</span>
+              <span className="font-medium text-sm">
+                {authorDisplayName} &nbsp;
+              </span>
               <span className="text-[#aaa]"> {timeAgo}</span>
             </p>
             <pre className="font-Roboto whitespace-normal">{textOriginal}</pre>
@@ -87,10 +89,10 @@ function Comments({ videoId }) {
   return (
     <div>
       {!disabled && (
-        <p className="mr-6 ml-2 my-2 font-medium text-lg">Comments:</p>
+        <p className="mr-6 ml-2 my-2 font-medium sm:text-lg">Comments:</p>
       )}
       {!disabled && comments?.length > 0 ? (
-        <div className="flex flex-col gap-8 rounded-lg p-3 text-sm">
+        <div className="flex flex-col gap-8 rounded-lg p-3 text-xs sm:text-sm">
           {thread}
           <div>
             <button

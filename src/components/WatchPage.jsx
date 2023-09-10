@@ -1,4 +1,4 @@
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useOutletContext } from "react-router-dom";
 //if you use useparams it takes only after the / but we are using query strings over here so use useSearchParams
 import {
   VIDEO_INFO_API1,
@@ -17,12 +17,11 @@ function WatchPage() {
   const [params] = useSearchParams();
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [error, setError] = useState(false);
-  const targetRef = useRef(null);
   const id = params.get("v");
-
+  const targetRef = useOutletContext();
   useEffect(() => {
     getVideoInfo(id);
-    targetRef?.current?.scrollIntoView();
+    targetRef.current.scrollTop = 0;
   }, [id]);
 
   async function getVideoInfo(videoId) {
@@ -58,7 +57,6 @@ function WatchPage() {
       <div className="mt-2 md:p-2">
         <iframe
           src={"https://www.youtube.com/embed/" + id + "?autoplay=true"}
-          ref={targetRef}
           className="w-full aspect-video max-w-screen-xl"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -71,7 +69,7 @@ function WatchPage() {
         )}
         {<Comments key={id} videoId={id} />}
       </div>
-      <div className="flex flex-col p-1 gap-6 sm:gap-3 max-w-full overflow-hidden">
+      <div className="flex flex-col p-1 gap-6 sm:gap-3 max-w-full overflow-hidden mb-8">
         <p className="ml-1 text-sm">Up Next</p>
 
         {!error ? (
