@@ -44,9 +44,12 @@ function Signup() {
   }
 
   return (
-    <div className="pl-3 pr-5 mx-auto mt-16 max-w-sm overflow-hidden flex-col justify-center">
+    <div className="mx-auto mt-24 max-w-sm overflow-hidden flex-col justify-center border p-4 border-[#555] bg-[#111] rounded-xl">
       <Form action="/profile" onSubmit={handleSubmit}>
         <h2 className="font-bold tracking-wider text-2xl mb-4">Sign up</h2>
+        <h3 className="mb-3 text-sm font-medium text-neutral-400">
+          Access Liked Videos and Subscriptions
+        </h3>
         <div>
           <label className="text-sm" htmlFor="username">
             Username
@@ -93,13 +96,13 @@ function Signup() {
         </div>
         <button
           type="submit"
-          className="text-sky-500 rounded-full border-[#444] border p-1 px-4 hover:bg-sky-950 mt-4 mr-4"
+          className="text-sky-500 rounded-full border-[#444] border p-1 px-3 hover:bg-sky-950 mt-4 mr-4 text-sm"
         >
           Sign up
         </button>
         <button
           type="button"
-          className="text-sky-500 rounded-full border-[#444] border p-1 px-4 hover:bg-sky-950 mt-4"
+          className="text-sky-500 rounded-full border-[#444] border p-1 px-3 hover:bg-sky-950 mt-4 text-sm"
           onClick={handleGuest}
         >
           Use guest credentials

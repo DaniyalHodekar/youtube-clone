@@ -3,7 +3,6 @@ import Body from "./components/Body";
 import { Provider } from "react-redux";
 import store from "../utils/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MainContainer from "./components/MainContainer";
 import Profile from "./components/Profile";
 import Loader from "./components/Loader";
 const CategoryVideos = React.lazy(() => import("./components/CategoryVideos"));
@@ -11,6 +10,7 @@ const SearchPage = React.lazy(() => import("./components/SearchPage"));
 const WatchPage = React.lazy(() => import("./components/WatchPage"));
 const ErrorElement = React.lazy(() => import("./components/ErrorElement"));
 const Signup = React.lazy(() => import("./components/Signup"));
+const MainContainer = React.lazy(() => import("./components/MainContainer"));
 
 const router = createBrowserRouter([
   {
@@ -24,7 +24,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <MainContainer />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <MainContainer />
+          </Suspense>
+        ),
       },
       {
         path: "/watch",

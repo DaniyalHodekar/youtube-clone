@@ -48,8 +48,8 @@ export default function VideoInfoCard({ info, videoId }) {
             <button
               className={
                 !subscribed
-                  ? "bg-[#252525] hover:bg-[#333] rounded-full p-1.5 px-4 text-sm"
-                  : "rounded-full p-1.5 px-4 text-sm bg-zinc-200 hover:bg-zinc-300 text-zinc-800"
+                  ? "bg-[#252525] hover:bg-[#333] rounded-full p-1 px-3.5 text-sm"
+                  : "rounded-full p-1 px-3.5 text-sm bg-zinc-200 hover:bg-zinc-300 text-zinc-800"
               }
               onClick={() => {
                 dispatch(addSubscription(info[0].channelTitle));
@@ -63,8 +63,8 @@ export default function VideoInfoCard({ info, videoId }) {
           <button
             className={
               !liked
-                ? "bg-[#252525] hover:bg-[#333] rounded-full p-1.5 px-4 text-sm"
-                : "rounded-full p-1.5 px-4 text-sm bg-sky-950 hover:bg-sky-900 text-sky-500"
+                ? "bg-[#252525] hover:bg-[#333] rounded-full p-1 px-3.5 text-sm"
+                : "rounded-full p-1 px-3.5 text-sm bg-sky-950 hover:bg-sky-900 text-sky-500"
             }
             onClick={() => {
               dispatch(addVideo(videoId));

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import RelatedVideoCard from "./RelatedVideoCard";
 import { VIDEO_INFO_API1 } from "../../utils/constants";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 const key = "&key=AIzaSyC5htb0LtlNokBQEdAIQ95nell3pm0LcQk";
 
@@ -37,8 +38,12 @@ function ProfilePage() {
 
   return (
     <div className="max-w-5xl mx-auto mb-5">
-      <h1 className="text-xl font-medium mt-2">{userName}&apos;s Profile</h1>
-      <h2 className="my-4">Liked Videos:</h2>
+      <h1 className="text-xl font-medium py-2 border-b border-zinc-600">
+        {userName}&apos;s Profile
+      </h1>
+      <h2 className="mb-4 mt-10 text-lg border-b border-zinc-600 pb-1">
+        Liked Videos:
+      </h2>
       {likedVideos.length > 0 ? (
         <div className="flex flex-col gap-2">
           {data.length > 0 ? (
@@ -50,17 +55,26 @@ function ProfilePage() {
               ))}
             </>
           ) : (
-            <p>Loading..</p>
+            <Loader />
           )}
         </div>
       ) : (
         <p>No liked Videos</p>
       )}
-      <h2 className="my-4">Subscriptions:</h2>
+      <h2 className="mt-10 text-lg border-b border-zinc-600 pb-1">
+        Subscriptions:
+      </h2>
       {subscriptions.length > 0 ? (
-        <ul className="text-sm list-decimal pl-3">
+        <ul className="text-sm list-none flex flex-wrap mb-16">
           {subscriptions.map((sub) => {
-            return <li key={sub}>{sub}</li>;
+            return (
+              <li
+                className="py-1 px-3 bg-[#222] rounded-full  mt-3 mr-2"
+                key={sub}
+              >
+                {sub}
+              </li>
+            );
           })}
         </ul>
       ) : (

@@ -22,7 +22,7 @@ function WatchPage() {
 
   useEffect(() => {
     getVideoInfo(id);
-    targetRef?.current?.scrollIntoView({ behavior: "smooth" });
+    targetRef?.current?.scrollIntoView();
   }, [id]);
 
   async function getVideoInfo(videoId) {
@@ -59,7 +59,7 @@ function WatchPage() {
         <iframe
           src={"https://www.youtube.com/embed/" + id + "?autoplay=true"}
           ref={targetRef}
-          className="w-full aspect-video rounded-md sm:rounded-lg max-w-screen-xl"
+          className="w-full aspect-video max-w-screen-xl"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
