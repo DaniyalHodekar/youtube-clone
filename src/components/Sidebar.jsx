@@ -216,7 +216,7 @@ export default function Sidebar() {
           <p className="text-zinc-500 mt-3 select-none">
             Project by{" "}
             <a
-              href="https://daniyalhodekar.netlify.app"
+              href="https://www.linkedin.com/in/daniyalhodekar/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sky-500"

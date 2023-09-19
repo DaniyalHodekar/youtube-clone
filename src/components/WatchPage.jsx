@@ -6,7 +6,7 @@ import {
   RELATED_VIDEOS_API,
   RELATED_VIDEOS_API_2,
 } from "../../utils/constants";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import RelatedVideoCard from "./RelatedVideoCard";
 import { Shimmers } from "./VideoContainer";
 import Comments from "./Comments";
