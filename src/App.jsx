@@ -73,7 +73,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <Provider store={store}>
-      <div className="bg-[#0a0a0a] text-white font-Roboto h-screen flex flex-col">
+      <div className="bg-[#0f0f0f] text-white font-Roboto h-screen flex flex-col">
         <RouterProvider router={router}>
           <Body />
         </RouterProvider>

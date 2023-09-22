@@ -3,9 +3,9 @@ import VideoContainer from "./VideoContainer";
 
 export default function MainContainer() {
   return (
-    <div>
-        <ButtonList/>
-        <VideoContainer/>
+    <div className="relative">
+      <ButtonList />
+      <VideoContainer />
     </div>
-  )
+  );
 }

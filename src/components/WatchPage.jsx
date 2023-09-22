@@ -19,10 +19,18 @@ function WatchPage() {
   const [error, setError] = useState(false);
   const id = params.get("v");
   const targetRef = useOutletContext();
+
   useEffect(() => {
     getVideoInfo(id);
     targetRef.current.scrollTop = 0;
   }, [id]);
+
+  useEffect(() => {
+    // getChannelInfo(id);
+    return function () {
+      document.title = "YouTube Clone";
+    };
+  }, []);
 
   async function getVideoInfo(videoId) {
     const data = await fetch(VIDEO_INFO_API1 + videoId + VIDEO_INFO_API2);
@@ -30,6 +38,7 @@ function WatchPage() {
     const { snippet, statistics } = json.items[0];
     getRelatedVideos(snippet.categoryId);
     setInfo([snippet, statistics]);
+    document.title = snippet.title;
   }
   //this returns us a urlSearchParams object which has a map of keys and its values of query strings, we can now get a value of a key.
 
@@ -53,11 +62,11 @@ function WatchPage() {
   ));
 
   return (
-    <div className="grid lg:grid-cols-[3fr_1.2fr] gap-4 xl:px-8">
+    <div className="grid lg:grid-cols-[3fr_1fr] gap-4 max-w-[108rem] mx-auto text-ellipsis overflow-hidden">
       <div className="mt-2 md:p-2">
         <iframe
           src={"https://www.youtube.com/embed/" + id + "?autoplay=true"}
-          className="w-full aspect-video max-w-screen-xl"
+          className="w-full aspect-video max-w-screen-xl lg:rounded-lg"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
@@ -69,7 +78,7 @@ function WatchPage() {
         )}
         {<Comments key={id} videoId={id} />}
       </div>
-      <div className="flex flex-col p-1 gap-6 sm:gap-3 max-w-full overflow-hidden mb-8">
+      <div className="flex flex-col p-1 gap-3 max-w-full overflow-hidden mb-8">
         <p className="ml-1 text-sm">Up Next</p>
 
         {!error ? (

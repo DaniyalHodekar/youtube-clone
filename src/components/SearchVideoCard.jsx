@@ -1,6 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
 function SearchVideoCard({ info }) {
-  // console.log(info);
   const { snippet } = info;
   let { channelTitle, title, publishedAt } = snippet;
   const thumbnail = snippet.thumbnails?.medium?.url;
@@ -9,7 +8,7 @@ function SearchVideoCard({ info }) {
     addSuffix: true,
   });
   return (
-    <div className="relative">
+    <div className="relative mb-5">
       <img
         src={thumbnail}
         alt="thumbnail"
@@ -17,9 +16,11 @@ function SearchVideoCard({ info }) {
         loading="lazy"
       />
       <h2 className="mt-3 mb-1 font-medium ">{title}</h2>
-      <p className="text-[#aaa] text-sm">{channelTitle} &#x2713;</p>
+      <p className="text-[#aaa] text-sm leading-snug">
+        {channelTitle} &#x2713;
+      </p>
 
-      <div className="text-[#aaa] text-sm mt-[2px]">
+      <div className="text-[#aaa] text-sm">
         <span>{timeAgo}</span>
       </div>
     </div>

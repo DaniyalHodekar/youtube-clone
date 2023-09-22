@@ -11,11 +11,14 @@ function VideoContainer() {
   const buttonRef = useRef(null);
 
   const getVideos = useCallback(async function () {
-    const data = await fetch(YOUTUBE_API);
-    const json = await data.json();
-    // console.log(json);
-    setVideos(json.items);
-    setNextPage(json.nextPageToken);
+    try {
+      const data = await fetch(YOUTUBE_API);
+      const json = await data.json();
+      setVideos(json.items);
+      setNextPage(json.nextPageToken);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   const getMoreVideos = useCallback(
@@ -24,7 +27,6 @@ function VideoContainer() {
       await delay(1000);
       const data = await fetch(YOUTUBE_API + `&pageToken=${nextPage}`);
       const json = await data.json();
-      // console.log(json);
       setVideos((prevVideos) => {
         return [...prevVideos, ...json.items];
       });
@@ -54,7 +56,7 @@ function VideoContainer() {
     };
   }, [getMoreVideos, nextPage]);
 
-  const vids = videos.map((video) => (
+  const vids = videos?.map((video) => (
     <Link key={video.id} to={"/watch?v=" + video.id}>
       <VideoCard info={video} />
     </Link>
@@ -62,8 +64,8 @@ function VideoContainer() {
 
   return (
     <>
-      <div className="p-1 grid grid-cols-container gap-5">
-        {videos.length <= 0 ? <Shimmers /> : vids}
+      <div className="pt-16 p-1 grid grid-cols-container gap-5">
+        {videos?.length <= 0 ? <Shimmers /> : vids}
       </div>
       {loading ? (
         <div className="p-1 grid grid-cols-container gap-6">
@@ -97,11 +99,16 @@ export function Shimmers() {
 
 function Shimmer() {
   return (
-    <div>
+    <div className="mb-6">
       <p className="bg-[#222] aspect-video rounded-lg animate-pulse"></p>
-      <p className="bg-[#222] h-4 max-w-[250px] rounded-md my-3 animate-pulse"></p>
-      <p className="bg-[#222] h-3 max-w-[130px] rounded-md my-3 animate-pulse"></p>
-      <p className="bg-[#222] h-3 max-w-[100px] rounded-md animate-pulse"></p>
+      <div className="flex">
+        <div className="bg-[#222] animate-pulse w-10 h-10 rounded-full mt-4 mr-3 aspect-square"></div>
+        <div className="h-full w-full">
+          <p className="bg-[#222] h-4 max-w-[250px] rounded-md my-3 animate-pulse"></p>
+          <p className="bg-[#222] h-3 max-w-[130px] rounded-md my-3 animate-pulse"></p>
+          <p className="bg-[#222] h-3 max-w-[100px] rounded-md animate-pulse"></p>
+        </div>
+      </div>
     </div>
   );
 }

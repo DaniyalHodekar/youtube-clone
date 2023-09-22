@@ -10,7 +10,7 @@ export const SEARCH_SUGGEST_API =
   "https://corsproxy.io/?http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const RELATED_VIDEOS_API =
-  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=15&videoCategoryId=";
+  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=20&videoCategoryId=";
 
 export const RELATED_VIDEOS_API_2 =
   "&key=AIzaSyC5htb0LtlNokBQEdAIQ95nell3pm0LcQk";
@@ -23,3 +23,9 @@ export const YOUTUBE_SEARCH_API = `https://youtube.googleapis.com/youtube/v3/sea
 
 export const CATEGORY_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=15&chart=mostPopular&videoCategoryId=";
+
+export const CHANNEL_API =
+  "https://youtube.googleapis.com/youtube/v3/channels?part=snippet&key=AIzaSyC5htb0LtlNokBQEdAIQ95nell3pm0LcQk&id=";
+
+export const CHANNEL_DETAILS_API =
+  "https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&key=AIzaSyC5htb0LtlNokBQEdAIQ95nell3pm0LcQk&id=";

@@ -21,7 +21,7 @@ const buttons = [
 
 export default function ButtonList() {
   return (
-    <div className="flex gap-3 py-3 px-1 overflow-x-auto no-scrollbar relative">
+    <div className="flex gap-3 py-3 px-3 overflow-x-auto no-scrollbar fixed bg-[#0f0f0f] z-10 left-0 right-2">
       {buttons.map((ok, i) => (
         <Button key={i} name={ok} />
       ))}
