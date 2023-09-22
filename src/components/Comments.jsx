@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { COMMENTS_API, RELATED_VIDEOS_API_2 } from "../../utils/constants";
 import { formatDistanceToNow } from "date-fns";
-import { VideoCardShimmer } from "./WatchPage";
+import Loader from "../components/Loader";
+
 function Comments({ videoId }) {
   const [comments, setComments] = useState([]);
   const [disabled, setDisabled] = useState(false);
@@ -121,12 +122,8 @@ function Comments({ videoId }) {
               Comments for this video have been disabled by the uploader
             </p>
           ) : (
-            <div className="flex flex-col gap-4 p-4">
-              {Array(3)
-                .fill(null)
-                .map((_, i) => (
-                  <VideoCardShimmer key={i} />
-                ))}
+            <div className="relative mt-28">
+              <Loader />
             </div>
           )}
         </>

@@ -21,7 +21,7 @@ function VideoContainer() {
   const getMoreVideos = useCallback(
     async function () {
       setLoading(true);
-      await delay(2000);
+      await delay(1000);
       const data = await fetch(YOUTUBE_API + `&pageToken=${nextPage}`);
       const json = await data.json();
       // console.log(json);
@@ -62,7 +62,7 @@ function VideoContainer() {
 
   return (
     <>
-      <div className="p-1 grid grid-cols-container gap-4">
+      <div className="p-1 grid grid-cols-container gap-5">
         {videos.length <= 0 ? <Shimmers /> : vids}
       </div>
       {loading ? (

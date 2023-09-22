@@ -86,9 +86,9 @@ export default WatchPage;
 
 export function VideoCardShimmer() {
   return (
-    <>
+    <div className="mt-4 px-2">
       <p className="h-4 rounded-lg max-w-xl bg-[#222]"></p>
       <p className="h-4 rounded-lg max-w-sm bg-[#222] my-3"></p>
-    </>
+    </div>
   );
 }
