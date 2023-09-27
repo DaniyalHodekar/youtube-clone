@@ -29,7 +29,7 @@ function VideoCard({ info }) {
   }
 
   return (
-    <div className="overflow-hidden mb-4">
+    <div className="overflow-hidden mb-3 md:mb-5">
       <div className="relative">
         <Link to={"/watch?v=" + info.id}>
           <img
@@ -59,7 +59,7 @@ function VideoCard({ info }) {
           <Link to={"/watch?v=" + info.id}>
             <h2
               title={title}
-              className="mt-4 md:mt-3 mb-1 md:font-medium leading-tight md:leading-snug"
+              className="text-sm md:text-base mt-4 md:mt-3 mb-1 md:font-medium md:leading-snug"
             >
               {title}
             </h2>

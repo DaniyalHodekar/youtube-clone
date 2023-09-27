@@ -15,7 +15,7 @@ function SearchVideoCard({ info }) {
         className="rounded-lg w-full bg-[#222] aspect-video"
         loading="lazy"
       />
-      <h2 className="mt-3 mb-1 font-medium ">{title}</h2>
+      <h2 className="mt-3 mb-2 md:font-medium leading-snug">{title}</h2>
       <p className="text-[#aaa] text-sm leading-snug">
         {channelTitle} &#x2713;
       </p>

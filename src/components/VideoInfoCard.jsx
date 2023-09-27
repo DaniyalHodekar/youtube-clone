@@ -40,7 +40,7 @@ export default function VideoInfoCard({ info, videoId }) {
 
   return (
     <div className="p-2 py-3 md:px-0">
-      <h2 className="font-semibold font-Noto text-[1.1rem] sm:text-lg mb-5 md:mb-3 tracking-tight leading-snug">
+      <h2 className="md:font-semibold md:font-Noto text-[1.1rem] sm:text-lg mb-3 md:tracking-tight leading-snug">
         {info[0].title}
       </h2>
       <div className="flex items-center flex-wrap">
@@ -58,7 +58,7 @@ export default function VideoInfoCard({ info, videoId }) {
           <div className="text-sm mx-3 flex items-center gap-2">
             <div>
               <Link to={"/channel/" + info[0].channelId}>
-                <h2 className="flex items-center font-medium lg:text-base">
+                <h2 className="flex items-center md:font-medium lg:text-base">
                   {info[0]?.channelTitle}
                   <svg
                     height="24"

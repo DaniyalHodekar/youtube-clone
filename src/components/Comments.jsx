@@ -70,13 +70,13 @@ function Comments({ videoId }) {
           </div>
           <div className="flex flex-col gap-1">
             <p>
-              <span className="font-medium text-sm">
+              <span className="md:font-medium text-sm">
                 {authorDisplayName} &nbsp;
               </span>
-              <span className="text-[#aaa]"> {timeAgo}</span>
+              <span className="text-xs text-[#999]"> {timeAgo}</span>
             </p>
-            <pre className="font-Roboto whitespace-normal">{textOriginal}</pre>
-            <p>
+            <pre className=" font-Roboto whitespace-normal">{textOriginal}</pre>
+            <p className="mt-2 md:mt-1 ">
               {likeCount >= 1000
                 ? Math.floor(likeCount / 100) + "K"
                 : likeCount}{" "}

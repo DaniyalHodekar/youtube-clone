@@ -28,7 +28,7 @@ function RelatedVideoCard({ info }) {
       <div className="overflow-hidden whitespace-nowrap">
         <h2
           title={title}
-          className="mb-1 mt-0.5 font-medium xl:whitespace-normal overflow-hidden text-ellipsis"
+          className="mb-1 mt-0.5 md:font-medium xl:whitespace-normal overflow-hidden text-ellipsis"
         >
           {title}
         </h2>
