@@ -15,7 +15,7 @@ function CategoryVideos() {
 
   async function getVideos(id) {
     const data = await fetch(
-      CATEGORY_API + id + "&key=AIzaSyC5htb0LtlNokBQEdAIQ95nell3pm0LcQk"
+      CATEGORY_API + id + "&key=AIzaSyCnctCW7I1TVGF7H1H2WsiqmBuGV6H03kk"
     );
     const json = await data.json();
     setVideos(json.items);

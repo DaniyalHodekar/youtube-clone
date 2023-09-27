@@ -89,6 +89,8 @@ export default function Sidebar() {
 }
 
 const Subscriptions = memo(function Subscriptions({ subscriptions }) {
+  const urls = useSelector((store) => store.login.subUrls);
+
   return (
     <ul>
       {subscriptions.map((channel) => (
@@ -100,10 +102,17 @@ const Subscriptions = memo(function Subscriptions({ subscriptions }) {
             }}
           >
             <div className="flex items-center p-2 hover:bg-[#333] rounded-md">
-              <span className="ml-5">{channel}</span>
+              <img
+                src={urls[channel]}
+                alt="channel avatar"
+                className="w-8 rounded-full"
+              />
+              <span className="ml-4 whitespace-nowrap overflow-hidden text-ellipsis max-w-[130px]">
+                {channel}
+              </span>
               <div
                 id="newness-dot"
-                className="w-1 h-1 rounded-full bg-sky-500 ml-4"
+                className="w-1 h-1 rounded-full bg-sky-500 ml-3"
               ></div>
             </div>
           </Link>

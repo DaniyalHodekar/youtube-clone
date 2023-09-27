@@ -5,7 +5,7 @@ import { VIDEO_INFO_API1 } from "../../utils/constants";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
 
-const key = "&key=AIzaSyC5htb0LtlNokBQEdAIQ95nell3pm0LcQk";
+const key = "&key=AIzaSyCnctCW7I1TVGF7H1H2WsiqmBuGV6H03kk";
 
 function Profile() {
   const loggedIn = useSelector((store) => store.login.isLoggedIn);

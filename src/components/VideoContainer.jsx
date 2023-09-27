@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { YOUTUBE_API } from "/utils/constants.js";
 import VideoCard from "./VideoCard";
-import { Link } from "react-router-dom";
 import delay from "../../utils/delay";
 
 function VideoContainer() {
@@ -57,9 +56,7 @@ function VideoContainer() {
   }, [getMoreVideos, nextPage]);
 
   const vids = videos?.map((video) => (
-    <Link key={video.id} to={"/watch?v=" + video.id}>
-      <VideoCard info={video} />
-    </Link>
+    <VideoCard key={video.id} info={video} />
   ));
 
   return (

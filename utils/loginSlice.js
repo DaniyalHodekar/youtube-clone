@@ -7,6 +7,7 @@ const loginSlice = createSlice({
     name: "",
     likedVideos: [],
     subscriptions: [],
+    subUrls: {},
   },
   reducers: {
     setLogin: function (state) {
@@ -26,12 +27,19 @@ const loginSlice = createSlice({
       state.subscriptions.push(action.payload);
     },
     removeSub: function (state, action) {
-      state.subscriptions = state.subscriptions.filter((sub) => {
-        sub !== action.payload;
+      let newSubs = state.subscriptions.filter((sub) => {
+        return sub !== action.payload;
       });
+      state.subscriptions = [...newSubs];
     },
     setName: function (state, action) {
       state.name = action.payload;
+    },
+    addSubUrl: function (state, action) {
+      state.subUrls = {
+        ...state.subUrls,
+        [action.payload[0]]: action.payload[1],
+      };
     },
   },
 });
@@ -44,4 +52,5 @@ export const {
   removeVideo,
   removeSub,
   setName,
+  addSubUrl,
 } = loginSlice.actions;

@@ -11,6 +11,7 @@ const WatchPage = React.lazy(() => import("./components/WatchPage"));
 const ErrorElement = React.lazy(() => import("./components/ErrorElement"));
 const Signup = React.lazy(() => import("./components/Signup"));
 const MainContainer = React.lazy(() => import("./components/MainContainer"));
+const Channel = React.lazy(() => import("./components/Channel"));
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <CategoryVideos />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/channel/:channelId",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Channel />
           </Suspense>
         ),
       },

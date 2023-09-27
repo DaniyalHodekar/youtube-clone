@@ -7,8 +7,10 @@ import {
   addSubscription,
   removeVideo,
   removeSub,
+  addSubUrl,
 } from "../../utils/loginSlice";
 import { CHANNEL_DETAILS_API } from "../../utils/constants";
+import { Link } from "react-router-dom";
 
 export default function VideoInfoCard({ info, videoId }) {
   const [details, setDetails] = useState(null);
@@ -29,6 +31,7 @@ export default function VideoInfoCard({ info, videoId }) {
     let subs = json?.items[0].statistics.subscriberCount;
     setDetails([subs, thumbnailUrl]);
   }
+
   const likedVideos = useSelector((store) => store.login.likedVideos);
   const subscriptions = useSelector((store) => store.login.subscriptions);
   const subscribed = subscriptions.includes(info[0].channelTitle);
@@ -43,27 +46,31 @@ export default function VideoInfoCard({ info, videoId }) {
       <div className="flex items-center flex-wrap">
         <div className="items-center flex mb-4 mr-3 grow">
           {details && (
-            <img
-              src={details[1]}
-              alt="channel avatar"
-              className="w-10 rounded-full"
-            />
+            <Link to={"/channel/" + info[0].channelId}>
+              <img
+                src={details[1]}
+                alt="channel avatar"
+                className="w-10 rounded-full"
+              />
+            </Link>
           )}
 
           <div className="text-sm mx-3 flex items-center gap-2">
             <div>
-              <h2 className="flex items-center font-medium lg:text-base">
-                {info[0]?.channelTitle}
-                <svg
-                  height="24"
-                  viewBox="0 0 24 26"
-                  focusable="false"
-                  className="w-4 ml-2"
-                  fill="#aaa"
-                >
-                  <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zM9.8 17.3l-4.2-4.1L7 11.8l2.8 2.7L17 7.4l1.4 1.4-8.6 8.5z"></path>
-                </svg>
-              </h2>
+              <Link to={"/channel/" + info[0].channelId}>
+                <h2 className="flex items-center font-medium lg:text-base">
+                  {info[0]?.channelTitle}
+                  <svg
+                    height="24"
+                    viewBox="0 0 24 26"
+                    focusable="false"
+                    className="w-4 ml-2"
+                    fill="#aaa"
+                  >
+                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zM9.8 17.3l-4.2-4.1L7 11.8l2.8 2.7L17 7.4l1.4 1.4-8.6 8.5z"></path>
+                  </svg>
+                </h2>
+              </Link>
               {details && (
                 <p className="text-xs text-[#aaa]">
                   {formatCount(details[0])} subscribers
@@ -84,6 +91,7 @@ export default function VideoInfoCard({ info, videoId }) {
                   dispatch(removeSub(info[0].channelTitle));
                 } else {
                   dispatch(addSubscription(info[0].channelTitle));
+                  dispatch(addSubUrl([info[0].channelTitle, details[1]]));
                 }
               }}
             >
