@@ -59,7 +59,7 @@ function VideoCard({ info }) {
           <Link to={"/watch?v=" + info.id}>
             <h2
               title={title}
-              className="mt-3 mb-0.5 md:mb-1 font-medium leading-snug"
+              className="mt-4 md:mt-3 mb-1 md:font-medium leading-tight md:leading-snug"
             >
               {title}
             </h2>
