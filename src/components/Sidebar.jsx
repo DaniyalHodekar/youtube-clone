@@ -15,7 +15,7 @@ export default function Sidebar() {
   }
   return (
     <aside
-      className={`p-[0.35rem] absolute top-0 h-[100dvh] ${position} z-30 bg-[#111] w-[250px] transition-all ease-in-out duration-300 flex flex-col`}
+      className={`py-[0.35rem] md:p-[0.35rem] absolute top-0 h-[100dvh] ${position} z-30 bg-[#111] w-[250px] transition-all ease-in-out duration-300 flex flex-col`}
     >
       <div className="flex gap-3 items-center ml-1">
         <button
