@@ -15,7 +15,7 @@ function CategoryVideos() {
 
   async function getVideos(id) {
     const data = await fetch(
-      CATEGORY_API + id + "&key=AIzaSyCnctCW7I1TVGF7H1H2WsiqmBuGV6H03kk"
+      CATEGORY_API + id + `&key=${import.meta.env.VITE_API_KEY}`
     );
     const json = await data.json();
     setVideos(json.items);

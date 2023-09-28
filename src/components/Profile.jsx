@@ -5,8 +5,6 @@ import { VIDEO_INFO_API1 } from "../../utils/constants";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
 
-const key = "&key=AIzaSyCnctCW7I1TVGF7H1H2WsiqmBuGV6H03kk";
-
 function Profile() {
   const loggedIn = useSelector((store) => store.login.isLoggedIn);
 
@@ -31,7 +29,11 @@ function ProfilePage() {
 
   async function getLikedVideos() {
     if (likedVideos.length === 0) return;
-    let res = await fetch(VIDEO_INFO_API1 + likedVideos.join(",") + key);
+    let res = await fetch(
+      VIDEO_INFO_API1 +
+        likedVideos.join(",") +
+        `&key=${import.meta.env.VITE_API_KEY}`
+    );
     let json = await res.json();
     setData(json.items);
   }
