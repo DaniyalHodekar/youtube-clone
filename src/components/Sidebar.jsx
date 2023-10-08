@@ -96,7 +96,7 @@ const Subscriptions = memo(function Subscriptions({ subscriptions }) {
       {subscriptions.map((channel) => (
         <li key={channel}>
           <Link
-            to=""
+            to="#"
             onClick={(e) => {
               e.stopPropagation();
             }}

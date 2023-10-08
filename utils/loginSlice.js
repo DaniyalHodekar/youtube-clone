@@ -19,7 +19,7 @@ const loginSlice = createSlice({
     },
     removeVideo: function (state, action) {
       state.likedVideos = state.likedVideos.filter((video) => {
-        video.id !== action.payload;
+        return video !== action.payload;
       });
     },
     addSubscription: function (state, action) {

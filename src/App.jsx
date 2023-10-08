@@ -5,6 +5,9 @@ import store from "../utils/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from "./components/Profile";
 import Loader from "./components/Loader";
+import ChannelHome from "./components/channelpages/ChannelHome";
+import ChannelPlaylist from "./components/channelpages/ChannelPlaylist";
+import ChannelAbout from "./components/channelpages/ChannelAbout";
 const CategoryVideos = React.lazy(() => import("./components/CategoryVideos"));
 const SearchPage = React.lazy(() => import("./components/SearchPage"));
 const WatchPage = React.lazy(() => import("./components/WatchPage"));
@@ -74,6 +77,20 @@ const router = createBrowserRouter([
             <Channel />
           </Suspense>
         ),
+        children: [
+          {
+            path: "/channel/:channelId",
+            element: <ChannelHome />,
+          },
+          {
+            path: "/channel/:channelId/playlists",
+            element: <ChannelPlaylist />,
+          },
+          {
+            path: "/channel/:channelId/about",
+            element: <ChannelAbout />,
+          },
+        ],
       },
     ],
   },

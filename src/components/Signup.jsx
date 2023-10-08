@@ -44,10 +44,10 @@ function Signup() {
   }
 
   return (
-    <div className="mx-auto mt-24 max-w-sm overflow-hidden flex-col justify-center border p-4 border-[#555] bg-[#111] rounded-xl">
+    <div className="mx-auto mt-24 max-w-md overflow-hidden flex-col justify-center border px-6 py-12 border-[#222] bg-[#111] rounded-xl">
       <Form action="/profile" onSubmit={handleSubmit}>
         <h2 className="font-bold tracking-wider text-2xl mb-4">Sign up</h2>
-        <h3 className="mb-3 text-sm font-medium text-neutral-400">
+        <h3 className="mb-4 text-sm font-medium text-neutral-400">
           Access Liked Videos and Subscriptions
         </h3>
         <div>
@@ -56,7 +56,7 @@ function Signup() {
           </label>
           <br />
           <input
-            className="bg-transparent border border-[#555] p-[0.25rem] px-2 rounded-md w-full focus:border-sky-600 outline-none mb-2"
+            className="bg-transparent border border-[#444] p-2 px-3 rounded-md w-full focus:border-sky-600 outline-none mb-4 mt-1"
             type="text"
             autoComplete="off"
             id="username"
@@ -74,7 +74,7 @@ function Signup() {
           </label>
           <br />
           <input
-            className="bg-transparent border border-[#555] p-[0.25rem] px-2 w-full rounded-md focus:border-sky-600 outline-none mb-2"
+            className="bg-transparent border border-[#444] p-2 px-3 w-full rounded-md focus:border-sky-600 outline-none mb-2 mt-1"
             type={text ? "text" : "password"}
             id="password"
             ref={passRef}
@@ -96,13 +96,13 @@ function Signup() {
         </div>
         <button
           type="submit"
-          className="text-sky-500 rounded-full border-[#444] border p-1 px-3 hover:bg-sky-950 mt-4 mr-4 text-sm"
+          className="text-sky-500 rounded-full border-[#333] border p-1.5 px-4 hover:bg-sky-950 mt-4 mr-4 text-sm"
         >
           Sign up
         </button>
         <button
           type="button"
-          className="text-sky-500 rounded-full border-[#444] border p-1 px-3 hover:bg-sky-950 mt-4 text-sm"
+          className="text-sky-500 rounded-full border-[#333] border p-1.5 px-4 hover:bg-sky-950 mt-4 text-sm"
           onClick={handleGuest}
         >
           Use guest credentials

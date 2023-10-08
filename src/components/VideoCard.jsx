@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import formatCount from "../../utils/formatCount";
 import { formatDistanceToNow } from "date-fns";
 import { CHANNEL_API } from "../../utils/constants";
 import formatTime from "../../utils/formatTime";
 import { Link } from "react-router-dom";
-function VideoCard({ info }) {
+
+const VideoCard = memo(function VideoCard({ info }) {
   const [imgUrl, setImgUrl] = useState(null);
   const { snippet, statistics } = info;
   let { channelTitle, title, publishedAt } = snippet;
@@ -19,7 +20,7 @@ function VideoCard({ info }) {
   let duration = formatTime(durationStr);
 
   useEffect(() => {
-    getChannelInfo(snippet?.channelId);
+    // getChannelInfo(snippet?.channelId);
   }, []);
 
   async function getChannelInfo(channelId) {
@@ -90,6 +91,6 @@ function VideoCard({ info }) {
       </div>
     </div>
   );
-}
+});
 
 export default VideoCard;

@@ -25,6 +25,11 @@
   background: #555;
 }
 
+.active {
+  color: white;
+  border-bottom: 3px solid #999;
+}
+
 @layer utilities {
   @variants responsive {
     /* Hide scrollbar for Chrome, Safari and Opera */

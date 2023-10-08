@@ -27,9 +27,10 @@ export const CHANNEL_API = `https://youtube.googleapis.com/youtube/v3/channels?p
   import.meta.env.VITE_API_KEY
 }&id=`;
 
-export const CHANNEL_DETAILS_API = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&key=${
+export const CHANNEL_DETAILS_API = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics%2CcontentDetails&key=${
   import.meta.env.VITE_API_KEY
 }&id=`;
 
-export const PLAYLIST_API =
-  "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=15&playlistId=";
+export const PLAYLIST_API = `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=15&key=${
+  import.meta.env.VITE_API_KEY
+}&playlistId=`;
